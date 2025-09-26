@@ -24,7 +24,10 @@ public class HangmanMultiple {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        String[] words = readWordsFromFile("words/programming.txt");
+        // Read words for each topic
+        String[] topic1 = readWordsFromFile("words/programming.txt");
+        String[] topic2 = readWordsFromFile("words/fruits.txt");
+        String[] topic3 = readWordsFromFile("words/animals.txt");
 
         boolean playAgain = true;
 
@@ -36,22 +39,22 @@ public class HangmanMultiple {
             System.out.print("Enter 1, 2, or 3: ");
 
             int choice = input.nextInt();
-            String[] words;
+            String[] selectedWords;
 
             if (choice == 1) {
-                words = topic1;
+                selectedWords = topic1;
             } else if (choice == 2) {
-                words = topic2;
+                selectedWords = topic2;
             } else if (choice == 3) {
-                words = topic3;
+                selectedWords = topic3;
             } else {
                 System.out.println("Invalid choice, defaulting to Programming");
-                words = topic1;
+                selectedWords = topic1;
             }
 
             // Randomly pick a word
-            int index = (int) (Math.random() * words.length);
-            String word = words[index];
+            int index = (int) (Math.random() * selectedWords.length);
+            String word = selectedWords[index];
 
             // Hidden word
             String hidden = "";
