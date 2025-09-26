@@ -1,13 +1,30 @@
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class HangmanMultiple {
+
+    public static String[] readWordsFromFile(String filename) {
+        ArrayList<String> wordsList = new ArrayList<>();
+        try {
+            Scanner fileScanner = new Scanner(new File(filename));
+            while (fileScanner.hasNextLine()) {
+                String line = fileScanner.nextLine().trim();
+                if (!line.equals("")) {
+                    wordsList.add(line);
+                }
+            }
+            fileScanner.close();
+        } catch (Exception e) {
+            System.out.println("Problem reading file: " + filename);
+        }
+        return wordsList.toArray(new String[0]);
+    }
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        // Three topics with different word lists
-        String[] topic1 = {"java", "code", "keyboard"};
-        String[] topic2 = {"apple", "banana", "orange"};
-        String[] topic3 = {"dog", "cat", "rabbit"};
+        String[] words = readWordsFromFile("words/programming.txt");
 
         boolean playAgain = true;
 
